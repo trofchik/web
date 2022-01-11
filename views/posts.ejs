@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Home</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="modules/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- ===== header start ===== -->
+    <%- include('./blocks/header') %>
+      <!-- ===== header end ===== -->
+
+      <main>
+        <div class="container">
+          <h1>Posts</h1>
+          <div class="row gy-2">
+            <% posts.forEach(function(post) { %>
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">
+                      <%= post.title %>
+                    </h5>
+                    <p class="card-text">
+                      <%= post.info %>
+                    </p>
+                    <a href="/delete/post/<%= post._id %>">
+                      <button class="btn btn-outline-warning">Remove</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <% }); %>
+          </div>
+          <div class="row" style="margin-top: 20px;">
+            <a href="/newPost">
+              <button class="btn btn-warning">New post</button>
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <!-- ===== footer start ===== -->
+      <%- include('./blocks/footer') %>
+        <!-- ===== footer end ===== -->
+  </div>
+</body>
+
+</html>

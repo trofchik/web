@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="modules/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  <title>Login</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!-- ===== header start ===== -->
+    <header>
+      <nav class="navbar bg-dark">
+        <div class="container">
+          <a href="/login">
+            <button class="btn btn-warning">
+              Sign in
+            </button>
+          </a>
+        </div>
+      </nav>
+    </header>
+    <!-- ===== header end ===== -->
+
+    <main>
+      <div class="container">
+        <div class="form-container">
+          <form action="/register" method="POST">
+            <div class="block">
+              <h1 class="h3 mb-3 font-weight-normal">Sign up for free</h1>
+              <div>
+                <label for="text">Name</label>
+                <input class="form-control" type="name" id="name" name="name" placeholder="Write name" required>
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" placeholder="Write email" required>
+              </div>
+              <div>
+                <label for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" placeholder="Write password"
+                  required>
+              </div>
+              <br>
+              <button class="btn btn-warning btn-block" type="submit">Create account</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <!-- ===== footer start ===== -->
+    <%- include('./blocks/footer') %>
+      <!-- ===== footer end ===== -->
+  </div>
+</body>
+
+</html>
