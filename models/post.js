@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const postShema = new mongoose.Schema({
+const postShema = new mongoose.Schema({ // hiden from user
   user: {
     type: String,
     required: true,
@@ -16,4 +16,4 @@ const postShema = new mongoose.Schema({
   },
 })
 
-module.exports = mongoose.model('post', postShema)
+module.exports = mongoose.model('post', postShema) // expose data type created from schema above

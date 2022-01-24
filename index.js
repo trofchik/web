@@ -1,3 +1,4 @@
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -8,6 +9,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const methodOverride = require('method-override')
 const mongoose = require('mongoose')
+const crypto = require('crypto')
 
 // models
 const User = require('./models/user')
@@ -17,7 +19,10 @@ const { checkNotAuthenticated, checkAuthenticated } = require ('./passport-confi
 
 const app = express()
 
+
+
 // connect to db
+process.env.DATABASE_URL = 'mongodb+srv://telephrag:coffespill@cluster0.ejcdy.mongodb.net/Cluster0?retryWrites=true&w=majority'
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection
 
@@ -33,6 +38,11 @@ initializePassport(
     return user
   }
 )
+
+// crypto shit
+dh = crypto.createDiffieHellman(128)
+dh.generateKeys('base64')
+process.env.SECRET_KEY = dh.getPublicKey('hex')
 
 // routes
 const usersRouter = require('./routes/users')
@@ -89,9 +99,10 @@ app.get('/editProfile', checkAuthenticated, (req, res) => {
 })
 
 app.get("*", function (req, res) {
-  res.render("404.ejs");
+  res.render("err.ejs", {code: 404});
 });
 
 const port = process.env.PORT || 4000
 
 app.listen(port, () => console.log(`server started on http://localhost:${port}`))
+
